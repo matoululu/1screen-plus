@@ -184,8 +184,9 @@ function appReady() {
 
   if(document.body.className == 'page__directory' ) {
     readCampaignList();
+    var newPostKey = firebase.database().ref().child('campaigns').push().key;
     var createID = document.getElementById('create');
-    createID.href = editorPage+'?create=true&id='+setUniq();
+    createID.href = editorPage+'?create=true&id='+newPostKey;
   }
 
   if(document.body.className == 'page__app' ) {
