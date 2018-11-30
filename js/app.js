@@ -266,10 +266,8 @@ function createCampaign(saveInfo) {
     blocks: campaignInfo.blocks
   }
 
-  var newPostKey = firebase.database().ref().child('campaigns').push().key;
-
   var updates = {};
-  updates['users/'+ userId +'/campaigns/'+newPostKey] = data;
+  updates['users/'+ userId +'/campaigns/'+getUrlVars()['id']] = data;
   return firebase.database().ref().update(updates);
 }
 
