@@ -9,9 +9,10 @@
   background-color: $primary;
   width: 100%;
   padding: 60px 0;
-  max-height: 600px;
+  min-height: 600px;
   color: white;
   @media screen and (max-width: 798px) {
+    min-height: 760px;
     max-height: initial;
   }
   .forty {
