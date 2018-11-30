@@ -1,0 +1,83 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login | 1Screen</title>
+    <meta name="keywords" content="dungeons, dragons, dungeons and dragons, dm, gm ,game master, dungeon master, screen, free, blocks, dnd, pathfinder" />
+    <meta property="og:title" content="1Screen" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="description" content="1Screen is an easy-to-use application that let's you organize all of your campaign information in one place. You can also take your campaign with you anywhere you go with 1Screen's cloud saving and responsive design.
+" />
+    <meta property="og:description" content="1Screen is an easy-to-use application that let's you organize all of your campaign information in one place. You can also take your campaign with you anywhere you go with 1Screen's cloud saving and responsive design.
+" />
+    <link href="/images/favicon.png" rel="shortcut icon">
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+  </head>
+  <body class="page__login">
+
+    <nav class="nav shadow">
+  <a class="nav__logo" href="/">
+    <img src="/images/1screen.svg" alt="1Screen">
+  </a>
+
+  <div class="nav__options">
+    <ul>
+      
+        <li><a href="/login">Log in</a></li>
+      
+    </ul>
+  </div>
+</nav>
+
+    <main role="main" class="login">
+      <div class="loading-screen"></div>
+
+<div class="sidebar">
+  <div class="sidebar__content">
+    <ul>
+      <li>
+        <a href="/campaigns"><i class="icon-folder"></i></a>
+        <span>My campaigns</span>
+      </li>
+      <li>
+        <a href="https://www.dndbeyond.com/compendium/rules/basic-rules" target="_blank"><i class="icon-book-open"></i></a>
+        <span>Basic rules</span>
+      </li>
+      <li>
+        <a id="logout" href="#"><i class="icon-log-out"></i></a>
+        <span>Log out</span>
+      </li>
+      <li>
+        <i class="icon-info"></i>
+        <span>Version A1.0.0</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="content content--padded">
+  <div class="container login">
+    <h1>Log in</h1>
+    <p>If you don't have an account you can create one here by entering your email address.</p><br>
+    <div class="login-form"></div>
+  </div>
+</div>
+    </main>
+
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.4.1/firebaseui.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
+
+<script src="/js/vendor.js"></script>
+<script src="/js/app.js"></script>
+
+
+  </body>
+</html>

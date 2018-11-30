@@ -1,0 +1,42 @@
+* {
+  -moz-box-sizing: border-box;
+  border: 0;
+  box-sizing: border-box;
+  font-size: 1em;
+  font-weight: normal;
+  font-style: normal;
+  margin: 0;
+  padding: 0;
+  outline-offset: 0.125em;
+  text-decoration: none;
+  vertical-align: baseline;
+}
+
+a, a:visited {
+  text-decoration: none;
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
+h1 { font-size: 3em; }
+h2 { font-size: 1.75em; }
+h3 { font-size: 1.25em; }
+h4 { font-size: 1.125em; }
+
+h1, h2, h3, h4 {
+  font-weight: 700;
+  line-height: 1.125;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+ol,
+ul {
+  margin: 1em 0;
+  padding-left: 40px;
+}

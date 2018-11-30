@@ -1,0 +1,12 @@
+title: 1Screen.xyz
+author: Matthew Marineau
+email: matthew.marineau@gmail.com
+description: > #
+  1Screen is an easy-to-use application that let's you organize all of your campaign information in one place. You can also take your campaign with you anywhere you go with 1Screen's cloud saving and responsive design.
+
+sass:
+    sass_dir: _sass
+    style: compact
+
+# Build settings
+markdown: kramdown
