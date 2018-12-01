@@ -249,11 +249,6 @@ function appReady() {
       createBlock('text');
     });
   }
-
-  setTimeout(function(){
-    document.querySelector('.loading-screen').style.display = 'none';
-  }, 300)
-
 }
 
 /* Directory Read/Write
@@ -272,13 +267,17 @@ function createCampaign(saveInfo) {
 }
 
 function readCampaignList() {
+  setTimeout(function(){
+    document.querySelector('.loading-screen').style.display = 'none';
+  }, 300);
+
   return firebase.database().ref('/users/' + userId + '/campaigns').once('value').then(function(snapshot) {
-  var keyData = {
-    size: 0,
-    title: 'Undefined'
-  };
-  keyData.size = 0;
-  var maxCount = 4;
+    var keyData = {
+      size: 0,
+      title: 'Undefined'
+    };
+    keyData.size = 0;
+    var maxCount = 4;
 
     for(var key in snapshot.val()) {
       keyData.size += 1;
@@ -292,8 +291,17 @@ function readCampaignList() {
       campaignList.append(div);
     }
 
-    var deleteBtn = document.querySelectorAll('.delete');
+    firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+      if(snapshot.val().premium != 'yes') {
+        document.getElementById('premiumBar').style.display = 'block';
+        document.getElementById('count').innerHTML = keyData.size+'/'+maxCount;
+        if(keyData.size > maxCount) {
+          document.getElementById('createBlock').remove();
+        }
+      }
+    });
 
+    var deleteBtn = document.querySelectorAll('.delete');
     deleteBtn.forEach(function(e){
       e.addEventListener('click', function(){
         keyToDelete = e.dataset.key;
@@ -306,10 +314,6 @@ function readCampaignList() {
       })
     });
 
-    document.getElementById('count').innerHTML = keyData.size+'/'+maxCount;
-    if(keyData.size > maxCount) {
-      document.getElementById('createBlock').remove();
-    }
   });
 }
 
@@ -352,6 +356,10 @@ function readCampaignInfo(campaignUrl) {
     document.getElementById('document-blocks').innerHTML = decodeURI(keyData.blocks);
 
     updateElements(campaignInfo);
+
+    setTimeout(function(){
+      document.querySelector('.loading-screen').style.display = 'none';
+    }, 300);
 
   });
 }

@@ -56,6 +56,14 @@ h1,h2,h3,h4,h5 {
   &.content--padded {
     margin: 20px auto;
   }
+
+  @media screen and (max-width: 1024px) {
+    width: 90%;
+  }
+
+  @media screen and (max-width: 798px) {
+    width: 95%;
+  }
 }
 
 .btn {
@@ -73,34 +81,9 @@ h1,h2,h3,h4,h5 {
 main {
   @include flexbox();
   height: calc(100vh - 50px);
-}
-
-.sidebar {
-  background-color: $accent;
-  height: 100%;
-  width: 60px;
-}
-
-.sidebar__content {
-  @include flexbox();
-  @include align-items(center);
-  @include flex-direction(column);
-}
-
-.sidebar__content ul {
-  list-style: none;
-  padding-left: 0;
-  font-size: 24px;
-  li { padding: 10px 0;}
-  a,
-  i {
-    color: white;
-    cursor: pointer;
-    transition: ease-in-out 0.3s opacity;
-    &:hover {
-      text-decoration: none;
-      opacity: 0.5;
-    }
+  @media screen and (max-width: 798px) {
+    @include flex-direction(column);
+    height: auto;
   }
 }
 
@@ -128,9 +111,11 @@ nav {
 }
 
 .nav__options {
+  @include flexbox();
+  @include align-items(center);
+  @include justify-content(flex-end);
   width: 100%;
   padding-right: 10px;
-  text-align: right;
   a {
     color: white;
     transition: ease-in-out 0.3s opacity;
@@ -139,6 +124,7 @@ nav {
       opacity: 0.5;
     }
   }
+  img { border-radius: 6px; }
 
   ul {
     @include inline-flexbox();
@@ -165,6 +151,53 @@ nav {
 
 /* Sidebar
 ================================================== */
+
+.sidebar {
+  background-color: $accent;
+  height: 100%;
+  width: 60px;
+  @media screen and (max-width: 798px) {
+    height: 45px;
+    width: 100%;
+  }
+}
+
+.sidebar__content {
+  @include flexbox();
+  @include align-items(center);
+  @include flex-direction(column);
+  @media screen and (max-width: 798px) {
+    @include flex-direction(row);
+    height: 100%;
+  }
+
+}
+
+.sidebar__content ul {
+  list-style: none;
+  padding-left: 0;
+  font-size: 24px;
+  @media screen and (max-width: 798px) {
+    margin: 0px auto;
+  }
+  li {
+    padding: 10px 0;
+    @media screen and (max-width: 798px) {
+      display: inline-block;
+      padding: 0 10px;
+    }
+  }
+  a,
+  i {
+    color: white;
+    cursor: pointer;
+    transition: ease-in-out 0.3s opacity;
+    &:hover {
+      text-decoration: none;
+      opacity: 0.5;
+    }
+  }
+}
 
 .sidebar li {
   position: relative;
@@ -265,6 +298,13 @@ nav {
   width: 95%;
   height: calc(100% - 20px);
   max-width: 1200px;
+  @media screen and (max-width: 1024px) {
+    width: 90%;
+  }
+
+  @media screen and (max-width: 798px) {
+    width: 95%;
+  }
 }
 
 .document__title {
@@ -282,11 +322,18 @@ nav {
   @include align-items(center);
   @include justify-content(space-between);
   position: relative;
+  @media screen and (max-width: 798px) {
+    @include flex-direction(column);
+    margin-bottom: 20px;
+  }
 }
 
 .document__workspace {
   @include flexbox();
   height: 90%;
+  @media screen and (max-width: 798px) {
+    @include flex-direction(column);
+  }
 }
 
 .document__editor { height: 100%; }
@@ -300,6 +347,12 @@ nav {
   display: inline-block;
   width: calc(30% - 20px);
   margin-left: 20px;
+  @media screen and (max-width: 798px) {
+    width: 100%;
+    margin-left: 0;
+    min-height: 150px;
+    margin-top: 20px;
+  }
 }
 
 .column__options {
@@ -329,6 +382,10 @@ nav {
 
 .document__container {
   width: 70%;
+  @media screen and (max-width: 798px) {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }
 
 .column__blocks {
@@ -367,6 +424,7 @@ nav {
   text-align: center;
   padding: 5px;
   color: $border;
+  display: none;
 }
 
 /* Directory
@@ -377,7 +435,7 @@ nav {
   @include align-items(center);
   background-color: lighten($border, 30%);
   color: $border;
-  border-radius: 50px;
+  border-radius: 6px;
   border: 1px solid $border;
   padding: 10px;
   width: 100%;
@@ -413,7 +471,6 @@ nav {
   position: relative;
   margin: 15px 0;
   a {
-    border-bottom: 1px solid $border;
     padding: 10px;
     position: relative;
     display: block;
@@ -424,7 +481,6 @@ nav {
       background-color: rgba(0,0,0,0.05);
       text-decoration: none;
     }
-    &:last-child { border-bottom: 0; }
   }
   .delete {
     position: absolute;
