@@ -7459,8 +7459,8 @@ nav { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -w
 @media screen and (max-width: 798px) { .document__container { width: 100%; margin-bottom: 20px; } }
 
 .column__blocks { padding: 10px; height: calc(100% - 60px); overflow-y: scroll; }
-.column__blocks .block { background-color: white; background-image: url("../images/tile-header.png"); background-repeat: repeat-x; border: 1px solid #9baec8; border-radius: 0px; padding: 5px; margin: 10px 0; position: relative; }
-.column__blocks .block textarea { width: 100%; margin: 25px 5px 5px; font-family: "Muli", sans-serif; resize: vertical; }
+.column__blocks .block { background-color: white; background-image: url("../images/tile-header.png"); background-repeat: repeat-x; border: 1px solid #9baec8; border-radius: 0px; padding: 5px 5px 0; margin: 10px 0 0; position: relative; }
+.column__blocks .block textarea { width: calc(100% - 10px); margin: 25px 5px 0px; font-family: "Muli", sans-serif; resize: vertical; }
 .column__blocks .block .close { cursor: pointer; position: absolute; top: 5px; right: 5px; }
 
 /* Premium

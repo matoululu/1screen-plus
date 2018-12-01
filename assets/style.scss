@@ -405,12 +405,12 @@ nav {
     background-repeat: repeat-x;
     border: 1px solid $border;
     border-radius: 0px;
-    padding: 5px;
-    margin: 10px 0;
+    padding: 5px 5px 0;
+    margin: 10px 0 0;
     position: relative;
     textarea {
-      width: 100%;
-      margin: 25px 5px 5px;
+      width: calc(100% - 10px);
+      margin: 25px 5px 0px;
       font-family: $fontstack;
       resize: vertical;
     }
