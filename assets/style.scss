@@ -8,7 +8,6 @@ $primary: #e01a41;
 $accent: #282c37;
 $border: #9baec8;
 $fontstack: 'Muli', sans-serif;
-$premium: #fffc19;
 
 .shadow {
   box-shadow: 0 1px 2px 0 rgba(31, 45, 61, 0.15);
@@ -348,6 +347,8 @@ nav {
 .document__content { height: calc(100% - 42px); }
 
 .document__column {
+  @include flexbox();
+  @include flex-direction(column);
   background: white;
   border: 1px solid $border;
   border-radius: 0px;
@@ -366,24 +367,13 @@ nav {
   @include flexbox;
   @include align-items(center);
   @include justify-content(flex-start);
-  border-bottom: 1px solid $border;
+  border-top: 1px solid $border;
   height: 42px;
-  ul {
-    margin: 0;
-    list-style: none;
-    padding-left: 10px;
-    li {
-      display: inline;
-      padding: 0 10px;
-      i {
-        color: $accent;
-        cursor: pointer;
-        &:hover {
-          color: #06c;
-          text-decoration: none;
-        }
-      }
-    }
+  padding: 0 10px;
+  position: relative;
+  input {
+    width: 100%;
+    outline: 0;
   }
 }
 
@@ -397,28 +387,18 @@ nav {
 
 .column__blocks {
   padding: 10px;
-  height: calc(100% - 60px);
   overflow-y: scroll;
-  .block {
-    background-color: white;
-    background-image: url('../images/tile-header.png');
-    background-repeat: repeat-x;
-    border: 1px solid $border;
-    border-radius: 0px;
-    padding: 5px 5px 0;
-    margin: 10px 0 0;
-    position: relative;
-    textarea {
-      width: calc(100% - 10px);
-      margin: 25px 5px 0px;
-      font-family: $fontstack;
-      resize: vertical;
-    }
-    .close {
-      cursor: pointer;
-      position: absolute;
-      top: 5px;
-      right: 5px;
+  height: calc(100% - 42px);
+  @media screen and (max-width: 798px) {
+    min-height: 400px;
+  }
+  ul {
+    list-style: none;
+    padding-left: 0;
+    li { padding: 5px; }
+    li:last-child {
+      background-color: darken(white, 10%);
+      border-radius: 6px;
     }
   }
 }
@@ -501,4 +481,17 @@ nav {
       color: $primary;
     }
   }
+}
+
+/* Privacy
+================================================== */
+
+.privacy {
+  margin: 20px 0;
+  height: 600px;
+  overflow-y: scroll;
+  padding: 10px;
+  border: 1px solid $border;
+  background-color: white;
+  h2 { margin-top: 0; }
 }

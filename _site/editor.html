@@ -28,9 +28,7 @@
 
   <div class="nav__options">
     <ul>
-      
-        <li><span id="premium-user"></span><span class="username"></span></li>
-      
+      <li><span id="premium-user"></span><span class="username"></span></li>
     </ul>
   </div>
 </nav>
@@ -45,19 +43,23 @@
     <ul>
       <li>
         <a href="/campaigns"><i class="icon-folder"></i></a>
-        <span>My campaigns</span>
+        <span class="shadow">My campaigns</span>
       </li>
       <li>
-        <a href="https://www.dndbeyond.com/compendium/rules/basic-rules" target="_blank"><i class="icon-book-open"></i></a>
-        <span>Basic rules</span>
+        <a href="https://twitter.com/omgmrm" target="_blank"><i class="icon-message-circle"></i></a>
+        <span class="shadow">Contact</span>
       </li>
       <li>
-        <a id="logout" href="#"><i class="icon-log-out"></i></a>
-        <span>Log out</span>
+        <a href="/about" target="_blank"><i class="icon-help-circle"></i></a>
+        <span class="shadow">About 1Screen</span>
       </li>
       <li>
         <i class="icon-info"></i>
-        <span>Version A1.2.0</span>
+        <span class="shadow">Version B2.2.0</span>
+      </li>
+      <li>
+        <a id="logout" href="#"><i class="icon-log-out"></i></a>
+        <span class="shadow">Log out</span>
       </li>
     </ul>
   </div>
@@ -75,17 +77,17 @@
   </div>
 </div>
     <div class="document__column shadow">
-  <div class="column__options">
-    <ul>
-      <li>
-        <i id="add-text" class="column__btn icon-file-text" title="Add text"></i>
-      </li>
-      <li>
-        More coming soon!
-      </li>
+  <div class="column__blocks" id="document-blocks">
+    <ul id="commands">
+      <li><i class="icon-chevron-right"></i> Type /help to view list of commands.</li>
     </ul>
   </div>
-  <div class="column__blocks" id="document-blocks"></div>
+  <div class="column__options">
+    <form id="command" onsubmit="return false" autocomplete="off">
+      <input id="commandInput" type="text" placeholder="Type command...">
+    </form>
+  </div>
+
 </div>
   </div>
 </div>

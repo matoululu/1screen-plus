@@ -13,6 +13,7 @@ var campaignInfo = new Object();
 var campaignList = document.getElementById('campaignList');
 var quill;
 var quillLoaded = false;
+var commandList = document.getElementById('commands');
 
 /* Login.html
 ================================================== */
@@ -136,8 +137,6 @@ function signInCheck() {
 //Contains elements that get updated
 function updateElements() {
   closeBtn = document.querySelectorAll('.close');
-  inputText = document.querySelectorAll('.block textarea');
-  console.log(inputText);
   updateEvents();
 }
 
@@ -149,29 +148,6 @@ function updateEvents() {
       this.parentNode.remove();
     })
   });
-
-  inputText.forEach(function(e){
-    e.addEventListener('input', function(e) {
-      changesMade();
-      e.srcElement.setAttribute('value', e.srcElement.value);
-      e.srcElement.innerHTML = e.srcElement.value;
-    });
-  });
-}
-
-function createBlock(type) {
-  let blockColumn = document.getElementById('document-blocks');
-  let block = document.createElement('div');
-  block.className = 'block shadow block__'+setUniq();
-
-  if(type == 'text') {
-    block.innerHTML = '<textarea></textarea><i class="close icon-x"></i>'
-  } else if(type == 'link') {
-
-  }
-
-  blockColumn.append(block);
-  updateElements();
 }
 
 //When app is ready
@@ -195,7 +171,6 @@ function appReady() {
     campaignInfo.id = getUrlVars()['id'];
     campaignInfo.title = document.getElementById('document-title').innerHTML;
     campaignInfo.text = '';
-    campaignInfo.blocks = '';
 
     if(getUrlVars()['create']) {
       createCampaign(campaignInfo);
@@ -223,6 +198,11 @@ function appReady() {
       changesMade();
     });
 
+    document.getElementById('command').addEventListener('submit', function(){
+      var commandInput = document.getElementById('commandInput').value;
+      commandHandler(commandInput);
+    });
+
     document.getElementById('save').addEventListener('click', function(){
       displaySavedChanges();
 
@@ -243,11 +223,6 @@ function appReady() {
       }
       saveCampaign(saveData, campaignInfo.id);
     }, 300000)
-
-    document.getElementById('add-text').addEventListener('click', function(){
-      changesMade();
-      createBlock('text');
-    });
   }
 }
 
@@ -257,8 +232,7 @@ function appReady() {
 function createCampaign(saveInfo) {
   var data = {
     title: campaignInfo.title,
-    text: campaignInfo.text,
-    blocks: campaignInfo.blocks
+    text: campaignInfo.text
   }
 
   var updates = {};
@@ -299,7 +273,7 @@ function readCampaignList() {
           document.getElementById('createBlock').remove();
         }
       } else {
-        document.getElementById('premium-user').innerHTML = '<i class="icon-award"></i> Premium';
+        document.getElementById('premium-user').innerHTML = '<i class="icon-award"></i> Supporter';
       }
     });
 
@@ -329,8 +303,7 @@ function deleteCampaign(key){
 function saveCampaign(saveData, campaignUrl) {
   var data = {
     title: saveData.title,
-    text: saveData.text,
-    blocks: saveData.blocks
+    text: saveData.text
   }
 
   var updates = {};
@@ -349,13 +322,11 @@ function readCampaignInfo(campaignUrl) {
     for(var key in snapshot.val()) {
       keyData.title = snapshot.val()['title'];
       keyData.text = snapshot.val()['text'];
-      keyData.blocks = snapshot.val()['blocks'];
     }
 
     document.getElementById('document-title').innerHTML = keyData.title;
     quill.setContents(JSON.parse(keyData.text));
     quillLoaded = true;
-    document.getElementById('document-blocks').innerHTML = decodeURI(keyData.blocks);
 
     updateElements(campaignInfo);
 
@@ -410,3 +381,33 @@ function encodeHTML(s) {
   return encodeURI(s);
 }
 
+function commandHandler(value) {
+  var li = document.createElement('li');
+  if(value == '/help') {
+    li.innerHTML = '<i class="icon-chevron-right"></i> Available commands:<br>/roll (Ex. /roll 1 20)<br>/clear (Clear commands)<br>/help (View list of commands)'
+    commandList.appendChild(li);
+  } else if(value.includes('/roll', 0)) {
+    var choppedValue = value.split(/\s+/).slice(1,3);
+    var amountRolled = choppedValue[0];
+    var dieType = choppedValue[1];
+    li.innerHTML = '<i class="icon-chevron-right"></i> D'+dieType+' rolled '+amountRolled+' times:';
+    commandList.appendChild(li);
+    for(i=0;amountRolled>i;i++) {
+      var rollLi = document.createElement('li');
+      rollLi.innerHTML = '<i class="icon-chevron-right"></i> '+ rollDice(dieType);
+      commandList.appendChild(rollLi);
+    }
+  } else if(value.includes('/clear', 0)) {
+    commandList.innerHTML = '';
+  } else {
+    li.innerHTML = '<i class="icon-chevron-right"></i> Unknown command. Try /help to view commands.'
+    commandList.appendChild(li);
+  }
+
+  document.getElementById('command').reset();
+}
+
+function rollDice(num) {
+  var randomNumber = Math.floor(Math.random() * num) + 1;
+  return randomNumber;
+}
