@@ -1,13 +1,13 @@
 <div class="document__column shadow">
-  <div class="column__options">
-    <ul>
-      <li>
-        <i id="add-text" class="column__btn icon-file-text" title="Add text"></i>
-      </li>
-      <li>
-        More coming soon!
-      </li>
+  <div class="column__blocks" id="document-blocks">
+    <ul id="commands">
+      <li><i class="icon-chevron-right"></i> Type /help to view list of commands.</li>
     </ul>
   </div>
-  <div class="column__blocks" id="document-blocks"></div>
+  <div class="column__options">
+    <form id="command" onsubmit="return false" autocomplete="off">
+      <input id="commandInput" type="text" placeholder="Type command...">
+    </form>
+  </div>
+
 </div>

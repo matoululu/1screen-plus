@@ -13,6 +13,12 @@ $fontstack: 'Muli', sans-serif;
   box-shadow: 0 1px 2px 0 rgba(31, 45, 61, 0.15);
 }
 
+#premium-user {
+  color: white;
+  font-weight: 700;
+  margin-right: 5px;
+}
+
 /* Includes
 ================================================== */
 
@@ -68,7 +74,7 @@ h1,h2,h3,h4,h5 {
 
 .btn {
   padding: 5px 7px;
-  border-radius: 6px;
+  border-radius: 0px;
   background-color: $primary;
   color: white;
   cursor: pointer;
@@ -124,7 +130,7 @@ nav {
       opacity: 0.5;
     }
   }
-  img { border-radius: 6px; }
+  img { border-radius: 0px; }
 
   ul {
     @include inline-flexbox();
@@ -209,7 +215,7 @@ nav {
   }
   span {
     background-color: $accent;
-    border-radius: 6px;
+    border-radius: 0px;
     color: white;
     display: block;
     position: absolute;
@@ -225,12 +231,12 @@ nav {
     font-size: 16px;
     text-align: center;
     &:before {
-      border-top: 6px solid transparent;
-      border-bottom: 6px solid transparent;
-      border-right: 6px solid $accent;
+      border-top: 0px solid transparent;
+      border-bottom: 0px solid transparent;
+      border-right: 0px solid $accent;
       content: '';
       height: 0;
-      left: -6px;
+      left: -0px;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -249,13 +255,13 @@ nav {
 }
 
 .ql-toolbar.ql-snow {
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }
 
 .ql-container.ql-snow {
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 /* Document editor
@@ -341,9 +347,11 @@ nav {
 .document__content { height: calc(100% - 42px); }
 
 .document__column {
+  @include flexbox();
+  @include flex-direction(column);
   background: white;
   border: 1px solid $border;
-  border-radius: 6px;
+  border-radius: 0px;
   display: inline-block;
   width: calc(30% - 20px);
   margin-left: 20px;
@@ -359,24 +367,13 @@ nav {
   @include flexbox;
   @include align-items(center);
   @include justify-content(flex-start);
-  border-bottom: 1px solid $border;
+  border-top: 1px solid $border;
   height: 42px;
-  ul {
-    margin: 0;
-    list-style: none;
-    padding-left: 10px;
-    li {
-      display: inline;
-      padding: 0 10px;
-      i {
-        color: $accent;
-        cursor: pointer;
-        &:hover {
-          color: #06c;
-          text-decoration: none;
-        }
-      }
-    }
+  padding: 0 10px;
+  position: relative;
+  input {
+    width: 100%;
+    outline: 0;
   }
 }
 
@@ -390,28 +387,18 @@ nav {
 
 .column__blocks {
   padding: 10px;
-  height: calc(100% - 60px);
   overflow-y: scroll;
-  .block {
-    background-color: white;
-    background-image: url('../images/tile-header.png');
-    background-repeat: repeat-x;
-    border: 1px solid $border;
-    border-radius: 6px;
-    padding: 5px;
-    margin: 10px 0;
-    position: relative;
-    textarea {
-      width: 100%;
-      margin: 25px 5px 5px;
-      font-family: $fontstack;
-      resize: vertical;
-    }
-    .close {
-      cursor: pointer;
-      position: absolute;
-      top: 5px;
-      right: 5px;
+  height: calc(100% - 42px);
+  @media screen and (max-width: 798px) {
+    min-height: 400px;
+  }
+  ul {
+    list-style: none;
+    padding-left: 0;
+    li { padding: 5px; }
+    li:last-child {
+      background-color: darken(white, 10%);
+      border-radius: 6px;
     }
   }
 }
@@ -435,7 +422,7 @@ nav {
   @include align-items(center);
   background-color: lighten($border, 30%);
   color: $border;
-  border-radius: 6px;
+  border-radius: 0px;
   border: 1px solid $border;
   padding: 10px;
   width: 100%;
@@ -448,7 +435,7 @@ nav {
 
 .campaign__create {
   border: 1px dashed $border;
-  border-radius: 6px;
+  border-radius: 0px;
   padding: 10px;
   font-size: 24px;
   margin: 15px 0;
@@ -464,7 +451,7 @@ nav {
 
 .campaign {
   border: 1px solid $border;
-  border-radius: 6px;
+  border-radius: 0px;
   background-color: white;
   padding-left: 0;
   list-style: none;
@@ -494,4 +481,17 @@ nav {
       color: $primary;
     }
   }
+}
+
+/* Privacy
+================================================== */
+
+.privacy {
+  margin: 20px 0;
+  height: 600px;
+  overflow-y: scroll;
+  padding: 10px;
+  border: 1px solid $border;
+  background-color: white;
+  h2 { margin-top: 0; }
 }
