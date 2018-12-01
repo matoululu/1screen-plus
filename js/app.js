@@ -298,6 +298,8 @@ function readCampaignList() {
         if(keyData.size > maxCount) {
           document.getElementById('createBlock').remove();
         }
+      } else {
+        document.getElementById('premium-user').innerHTML = '<i class="icon-award"></i> Premium';
       }
     });
 
