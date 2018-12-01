@@ -56,6 +56,14 @@ h1,h2,h3,h4,h5 {
   &.content--padded {
     margin: 20px auto;
   }
+
+  @media screen and (max-width: 1024px) {
+    width: 90%;
+  }
+
+  @media screen and (max-width: 798px) {
+    width: 95%;
+  }
 }
 
 .btn {

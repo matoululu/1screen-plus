@@ -1,0 +1,28 @@
+{% assign date_format = "%b %-d, %Y" %}
+
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}1Screen</title>
+    <meta name="keywords" content="dungeons, dragons, dungeons and dragons, dm, gm ,game master, dungeon master, screen, free, blocks, dnd, pathfinder" />
+    <meta property="og:title" content="1Screen" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="description" content="{{ site.description }}" />
+    <meta property="og:description" content="{{ site.description }}" />
+    <link href="{{ 'images/favicon.png' | relative_url }}" rel="shortcut icon">
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="{{ 'assets/style.css' | relative_url }}">
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+  </head>
+  <body class="page__{{ page.id | slugify }}">
+
+    <main role="main" class="{{ page.layout | slugify }}">
+      {{content}}
+    </main>
+
+    {% include footer.html %}
+  </body>
+</html>
