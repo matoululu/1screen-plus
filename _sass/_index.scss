@@ -1,3 +1,9 @@
+.page__index {
+  background-image: url('../images/bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
 .page__index main {
   @include flex-direction(column);
   height: 100vh;
@@ -7,7 +13,7 @@
   @include flexbox();
   @include justify-content(center);
   @include align-items(center);
-  background-color: $primary;
+  background-color: rgba(224, 26, 65,0.85);
   color: white;
   height: 100%;
   .hero__content {

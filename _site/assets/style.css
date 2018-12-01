@@ -7339,13 +7339,15 @@ ol, ul { margin: 1em 0; padding-left: 40px; }
 
 .em-zzz.em-svg { background: url("https://twemoji.maxcdn.com/2/72x72/1f4a4.png"); background-image: url("https://twemoji.maxcdn.com/2/svg/1f4a4.svg"), none; }
 
+.page__index { background-image: url("../images/bg.jpg"); background-size: cover; background-position: center; }
+
 .page__index main { -webkit-flex-direction: column; -ms-flex-direction: column; -moz-flex-direction: column; -o-flex-direction: column; flex-direction: column; height: 100vh; }
 
-.hero { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-justify-content: center; -ms-justify-content: center; -moz-justify-content: center; -o-justify-content: center; justify-content: center; -webkit-align-items: center; -ms-align-items: center; -moz-align-items: center; -o-align-items: center; align-items: center; background-color: #e01a41; color: white; height: 100%; }
+.hero { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-justify-content: center; -ms-justify-content: center; -moz-justify-content: center; -o-justify-content: center; justify-content: center; -webkit-align-items: center; -ms-align-items: center; -moz-align-items: center; -o-align-items: center; align-items: center; background-color: rgba(224, 26, 65, 0.85); color: white; height: 100%; }
 .hero .hero__content { max-width: 800px; width: 85%; padding: 60px 0; margin: 0px auto; }
 .hero img { width: 250px; }
 
-a.actionBtn { background-color: white; color: #e01a41; padding: 7px 10px; border: 1px solid white; border-radius: 6px; display: inline-block; margin-right: 10px; transition: ease-in-out 0.3s opacity; opacity: 1; }
+a.actionBtn { background-color: white; color: #e01a41; padding: 7px 10px; border: 1px solid white; border-radius: 6px; display: inline-block; margin-right: 10px; transition: ease-in-out 0.3s opacity; opacity: 1; margin-top: 20px; }
 a.actionBtn.secondary { background-color: transparent; color: white; }
 a.actionBtn:hover { opacity: 0.7; text-decoration: none; }
 
