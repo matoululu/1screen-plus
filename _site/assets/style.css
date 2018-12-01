@@ -7382,6 +7382,7 @@ nav { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -w
 .nav__options { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-align-items: center; -ms-align-items: center; -moz-align-items: center; -o-align-items: center; align-items: center; -webkit-justify-content: flex-end; -ms-justify-content: flex-end; -moz-justify-content: flex-end; -o-justify-content: flex-end; justify-content: flex-end; width: 100%; padding-right: 10px; }
 .nav__options a { color: white; transition: ease-in-out 0.3s opacity; }
 .nav__options a:hover { text-decoration: none; opacity: 0.5; }
+.nav__options img { border-radius: 6px; }
 .nav__options ul { display: -webkit-inline-box; display: -moz-inline-box; display: -ms-index-flexbox; display: -webkit-inline-flex; display: inline-flex; list-style: none; padding-left: 0; margin: 0; }
 .nav__options ul li { display: -webkit-inline-box; display: -moz-inline-box; display: -ms-index-flexbox; display: -webkit-inline-flex; display: inline-flex; -webkit-align-items: center; -ms-align-items: center; -moz-align-items: center; -o-align-items: center; align-items: center; padding-left: 10px; }
 .nav__options ul span { display: -webkit-inline-box; display: -moz-inline-box; display: -ms-index-flexbox; display: -webkit-inline-flex; display: inline-flex; -webkit-align-items: center; -ms-align-items: center; -moz-align-items: center; -o-align-items: center; align-items: center; color: white; }
@@ -7464,7 +7465,7 @@ nav { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -w
 
 /* Directory
 ================================================== */
-.tips { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-align-items: center; -ms-align-items: center; -moz-align-items: center; -o-align-items: center; align-items: center; background-color: #fefefe; color: #9baec8; border-radius: 50px; border: 1px solid #9baec8; padding: 10px; width: 100%; margin: 20px 0; }
+.tips { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-align-items: center; -ms-align-items: center; -moz-align-items: center; -o-align-items: center; align-items: center; background-color: #fefefe; color: #9baec8; border-radius: 6px; border: 1px solid #9baec8; padding: 10px; width: 100%; margin: 20px 0; }
 .tips .icon-bell { font-size: 30px; margin: 0 25px; }
 
 .campaign__create { border: 1px dashed #9baec8; border-radius: 6px; padding: 10px; font-size: 24px; margin: 15px 0; }

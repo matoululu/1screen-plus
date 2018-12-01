@@ -124,6 +124,7 @@ nav {
       opacity: 0.5;
     }
   }
+  img { border-radius: 6px; }
 
   ul {
     @include inline-flexbox();
@@ -434,7 +435,7 @@ nav {
   @include align-items(center);
   background-color: lighten($border, 30%);
   color: $border;
-  border-radius: 50px;
+  border-radius: 6px;
   border: 1px solid $border;
   padding: 10px;
   width: 100%;
