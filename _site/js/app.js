@@ -325,8 +325,10 @@ function readCampaignInfo(campaignUrl) {
     }
 
     document.getElementById('document-title').innerHTML = keyData.title;
-    quill.setContents(JSON.parse(keyData.text));
-    quillLoaded = true;
+    if(keyData.text != '') {
+      quill.setContents(JSON.parse(keyData.text));
+      quillLoaded = true;
+    }
 
     updateElements(campaignInfo);
 
