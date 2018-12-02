@@ -1,11 +1,11 @@
 /* Globals
 ================================================== */
 
-const appPage = "/campaigns";
-const termsPage = "/terms";
-const homePage = "/";
-const loginPage = "/login";
-const editorPage = "/editor";
+var appPage = "/campaigns";
+var termsPage = "/terms";
+var homePage = "/";
+var loginPage = "/login";
+var editorPage = "/editor";
 
 var userName, userEmail, userId;
 var userPremium = false;
@@ -174,7 +174,9 @@ function appReady() {
 
     if(getUrlVars()['create']) {
       createCampaign(campaignInfo);
-      readCampaignInfo(campaignInfo.id);
+      setTimeout(function(){
+        document.querySelector('.loading-screen').style.display = 'none';
+      }, 300);
     } else {
       readCampaignInfo(campaignInfo.id);
     }
@@ -187,7 +189,7 @@ function appReady() {
           ['bold', 'italic', 'underline', 'strike', { 'align': [] }],
           ['link'],
           [{ 'color': [] }],
-          [{ 'list': 'ordered'}, { 'list': 'bullet' }]
+          [{ 'list': 'ordered'}, { 'list': 'bulvar' }]
         ]
       },
       theme: 'snow'
@@ -284,10 +286,10 @@ function readCampaignList() {
     var deleteBtn = document.querySelectorAll('.delete');
     deleteBtn.forEach(function(e){
       e.addEventListener('click', function(){
-        keyToDelete = e.dataset.key;
+        keyTodelete = e.dataset.key;
 
         if(confirm("Are you sure you want to delete this campaign?") == true ){
-          deleteCampaign(keyToDelete);
+          deleteCampaign(keyTodelete);
           location.reload();
         }
 
@@ -357,7 +359,7 @@ function getUrlVars() {
 }
 
 function setUniq() {
-  let uniq = (new Date()).getTime();
+  var uniq = (new Date()).getTime();
   return uniq;
 }
 

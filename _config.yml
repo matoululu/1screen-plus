@@ -6,7 +6,7 @@ description: > #
 
 sass:
     sass_dir: _sass
-    style: compact
+    style: compressed
 
 # Build settings
 markdown: kramdown
