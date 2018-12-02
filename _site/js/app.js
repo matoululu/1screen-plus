@@ -390,13 +390,26 @@ function commandHandler(value) {
     var choppedValue = value.split(/\s+/).slice(1,3);
     var amountRolled = choppedValue[0];
     var dieType = choppedValue[1];
-    li.innerHTML = '<i class="icon-chevron-right"></i> D'+dieType+' rolled '+amountRolled+' times:';
     commandList.appendChild(li);
-    for(i=0;amountRolled>i;i++) {
+
+    if(amountRolled == undefined && dieType == undefined) {
+      li.innerHTML = '<i class="icon-chevron-right"></i> No dice type or amount included.';
+
+    } else if(dieType == undefined) {
+      li.innerHTML = '<i class="icon-chevron-right"></i> D'+amountRolled+' rolled:';
       var rollLi = document.createElement('li');
-      rollLi.innerHTML = '<i class="icon-chevron-right"></i> '+ rollDice(dieType);
+      rollLi.innerHTML = '<i class="icon-chevron-right"></i> '+ rollDice(amountRolled);
       commandList.appendChild(rollLi);
+
+    } else {
+      li.innerHTML = '<i class="icon-chevron-right"></i> D'+dieType+' rolled '+amountRolled+' times:';
+      for(i=0;amountRolled>i;i++) {
+        var rollLi = document.createElement('li');
+        rollLi.innerHTML = '<i class="icon-chevron-right"></i> '+ rollDice(dieType);
+        commandList.appendChild(rollLi);
+      }
     }
+
   } else if(value.includes('/clear', 0)) {
     commandList.innerHTML = '';
   } else {
