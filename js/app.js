@@ -174,6 +174,7 @@ function appReady() {
 
     if(getUrlVars()['create']) {
       createCampaign(campaignInfo);
+      readCampaignInfo(campaignInfo.id);
     } else {
       readCampaignInfo(campaignInfo.id);
     }
@@ -237,7 +238,10 @@ function createCampaign(saveInfo) {
 
   var updates = {};
   updates['users/'+ userId +'/campaigns/'+getUrlVars()['id']] = data;
-  return firebase.database().ref().update(updates);
+  setTimeout(function(){
+    return firebase.database().ref().update(updates);
+  }, 750);
+
 }
 
 function readCampaignList() {
@@ -314,7 +318,7 @@ function saveCampaign(saveData, campaignUrl) {
 function readCampaignInfo(campaignUrl) {
   return firebase.database().ref('/users/' + userId + '/campaigns/'+campaignUrl).once('value').then(function(snapshot) {
     var keyData = {
-      title: 'Undefined',
+      title: 'Your first campaign',
       text: '',
       blocks: ''
     };
@@ -326,6 +330,7 @@ function readCampaignInfo(campaignUrl) {
 
     document.getElementById('document-title').innerHTML = keyData.title;
     if(keyData.text != '') {
+
       quill.setContents(JSON.parse(keyData.text));
       quillLoaded = true;
     }
