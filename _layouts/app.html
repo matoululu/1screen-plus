@@ -14,7 +14,10 @@ handle: app
 <div class="document">
   <div class="document__header">
     <h1 onclick="changesMade()" spellcheck="false" id="document-title" class="document__title" contenteditable="true">Your first campaign</h1>
-    <button class="shadow" id="save"><i class="icon-save"></i> <span id="save-message">Save</span></button>
+    <div class="document__buttons">
+        <button class="shadow" id="notes"><i class="icon-edit-2"></i> Notes</button>
+        <button class="shadow" id="save"><i class="icon-save"></i> <span id="save-message">Save</span></button>
+    </div>
   </div>
   <div class="document__workspace">
     {% include editor.html %}

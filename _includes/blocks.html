@@ -1,13 +1,16 @@
-<div class="document__column shadow">
-  <div class="column__blocks" id="document-blocks">
+<div class="document__column shadow is-active" id="terminal">
+  <div class="column__blocks  is-active" id="document-blocks">
     <ul id="commands">
       <li><i class="icon-chevron-right"></i> Type /help to view list of commands.</li>
     </ul>
   </div>
-  <div class="column__options">
+  <div class="column__options is-active" id="column-options">
     <form id="command" onsubmit="return false" autocomplete="off">
       <input id="commandInput" type="text" placeholder="Type command...">
     </form>
   </div>
+</div>
 
+<div class="document__column shadow" id="notes-editor">
+  <div class="document__content" id="document-notes"></div>
 </div>

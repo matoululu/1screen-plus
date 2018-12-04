@@ -160,7 +160,7 @@ function appReady() {
 
   if(document.body.className == 'page__directory' ) {
     readCampaignList();
-    var newPostKey = firebase.database().ref().child('campaigns').push().key;
+    var newPostKey = setUniq(); //firebase.database().ref().child('campaigns').push().key;
     var createID = document.getElementById('create');
     createID.href = editorPage+'?create=true&id='+newPostKey;
   }
@@ -181,6 +181,17 @@ function appReady() {
       readCampaignInfo(campaignInfo.id);
     }
 
+    quillNotes = new Quill('#document-notes', {
+      modules: {
+        toolbar: [
+          ['bold', 'italic', 'underline'],
+          ['link'],
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }]
+        ]
+      },
+      theme: 'snow'
+    });
+
     quill = new Quill('#document-content', {
       modules: {
         toolbar: [
@@ -189,7 +200,7 @@ function appReady() {
           ['bold', 'italic', 'underline', 'strike', { 'align': [] }],
           ['link'],
           [{ 'color': [] }],
-          [{ 'list': 'ordered'}, { 'list': 'bulvar' }]
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }]
         ]
       },
       theme: 'snow'
@@ -206,11 +217,30 @@ function appReady() {
       commandHandler(commandInput);
     });
 
+    document.getElementById('notes').addEventListener('click', function(){
+      if(this.classList.contains('is-open')) {
+        this.innerHTML = '<i class="icon-edit-2"></i> Notes';
+        this.classList.remove('is-open');
+
+        document.getElementById('notes-editor').classList.remove('is-active');
+        document.getElementById('terminal').classList.add('is-active');
+
+      } else {
+        this.classList.add('is-open');
+        this.innerHTML = '<i class="icon-terminal"></i> Commands';
+
+        document.getElementById('terminal').classList.remove('is-active');
+        document.getElementById('notes-editor').classList.add('is-active');
+
+      }
+    });
+
     document.getElementById('save').addEventListener('click', function(){
       displaySavedChanges();
 
       var saveData = {
         text: JSON.stringify(quill.getContents()),
+        notes: JSON.stringify(quillNotes.getContents()),
         title: document.getElementById('document-title').innerHTML,
         blocks: encodeHTML(document.getElementById('document-blocks').innerHTML)
       }
@@ -309,7 +339,8 @@ function deleteCampaign(key){
 function saveCampaign(saveData, campaignUrl) {
   var data = {
     title: saveData.title,
-    text: saveData.text
+    text: saveData.text,
+    notes: saveData.notes
   }
 
   var updates = {};
@@ -322,18 +353,23 @@ function readCampaignInfo(campaignUrl) {
     var keyData = {
       title: 'Your first campaign',
       text: '',
-      blocks: ''
+      notes: ''
     };
 
     for(var key in snapshot.val()) {
       keyData.title = snapshot.val()['title'];
       keyData.text = snapshot.val()['text'];
+      keyData.notes = snapshot.val()['notes'];
     }
 
     document.getElementById('document-title').innerHTML = keyData.title;
     if(keyData.text != '') {
 
       quill.setContents(JSON.parse(keyData.text));
+      if(keyData.notes != undefined) {
+        quillNotes.setContents(JSON.parse(keyData.notes));
+      }
+
       quillLoaded = true;
     }
 
