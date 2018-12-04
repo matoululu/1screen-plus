@@ -277,6 +277,8 @@ function readCampaignList() {
     document.querySelector('.loading-screen').style.display = 'none';
   }, 300);
 
+  tipGenerator();
+
   return firebase.database().ref('/users/' + userId + '/campaigns').once('value').then(function(snapshot) {
     var keyData = {
       size: 0,
@@ -464,8 +466,22 @@ function rollDice(num) {
   return randomNumber;
 }
 
-function isPremium(){
+function isPremium() {
   // firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
 
   // });
+}
+
+//
+//
+
+var tipsArray = [
+  '<h3>Did you know?</h3><p>Your changes save automatically every 5 minutes.</p>',
+  '<h3>Did you know?</h3><p>You can store useful snippets by clicking the "notes" button.</p>',
+  '<h3>Did you know?</h3><p>Premium users get access to unlimited campaigns.</p>'
+]
+
+function tipGenerator() {
+  var randomString = tipsArray[Math.floor(Math.random()*tipsArray.length)];
+  document.getElementById('tip').innerHTML = randomString;
 }
