@@ -264,20 +264,53 @@ nav {
   border-bottom-right-radius: 0px;
 }
 
+.document__column .ql-container.ql-snow,
+.document__column .ql-toolbar.ql-snow {
+  border-color: transparent;
+}
+
+.document__column .ql-container.ql-snow,
+.document__column .ql-toolbar.ql-snow {
+  border-bottom-color: $border;
+}
+
 /* Document editor
 ================================================== */
+
+#notes {
+  padding: 7px;
+  background-color: transparent;
+  border: 1px solid $primary;
+  border-radius: 3px;
+  color: $primary;
+  cursor: pointer;
+  width: 150px;
+  text-align: center;
+  margin-left: 10px;
+  outline: 0;
+  &:hover {
+    border: 1px solid darken($primary, 20%);
+    color: darken($primary, 20%);
+  }
+}
 
 #save {
   padding: 7px;
   background-color: $accent;
+  border: 1px solid $accent;
   border-radius: 3px;
   color: white;
   cursor: pointer;
   transition: ease-in-out 0.3s background-color;
   width: 150px;
   text-align: center;
-  &.changes { background-color: $primary; }
+  margin-left: 10px;
+  &.changes {
+    background-color: $primary;
+    border-color: $primary;
+  }
   &:hover {
+    border: 1px solid darken($primary, 20%);
     background-color: darken($primary, 20%);
   }
 }
@@ -303,7 +336,7 @@ nav {
   margin: 10px auto;
   width: 95%;
   height: calc(100% - 20px);
-  max-width: 1200px;
+  max-width: calc(95% - 40px);
   @media screen and (max-width: 1024px) {
     width: 90%;
   }
@@ -378,7 +411,7 @@ nav {
 }
 
 .document__container {
-  width: 70%;
+  width: 90%;
   @media screen and (max-width: 798px) {
     width: 100%;
     margin-bottom: 20px;
@@ -401,6 +434,16 @@ nav {
       border-radius: 6px;
     }
   }
+}
+
+#terminal {
+  display: none;
+  &.is-active { @include flexbox(); }
+}
+
+#notes-editor {
+  display: none;
+  &.is-active { @include flexbox(); }
 }
 
 /* Premium

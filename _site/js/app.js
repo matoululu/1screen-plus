@@ -1,11 +1,11 @@
 /* Globals
 ================================================== */
 
-const appPage = "/campaigns";
-const termsPage = "/terms";
-const homePage = "/";
-const loginPage = "/login";
-const editorPage = "/editor";
+var appPage = "/campaigns";
+var termsPage = "/terms";
+var homePage = "/";
+var loginPage = "/login";
+var editorPage = "/editor";
 
 var userName, userEmail, userId;
 var userPremium = false;
@@ -160,7 +160,7 @@ function appReady() {
 
   if(document.body.className == 'page__directory' ) {
     readCampaignList();
-    var newPostKey = firebase.database().ref().child('campaigns').push().key;
+    var newPostKey = setUniq(); //firebase.database().ref().child('campaigns').push().key;
     var createID = document.getElementById('create');
     createID.href = editorPage+'?create=true&id='+newPostKey;
   }
@@ -174,9 +174,23 @@ function appReady() {
 
     if(getUrlVars()['create']) {
       createCampaign(campaignInfo);
+      setTimeout(function(){
+        document.querySelector('.loading-screen').style.display = 'none';
+      }, 300);
     } else {
       readCampaignInfo(campaignInfo.id);
     }
+
+    quillNotes = new Quill('#document-notes', {
+      modules: {
+        toolbar: [
+          ['bold', 'italic', 'underline'],
+          ['link'],
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }]
+        ]
+      },
+      theme: 'snow'
+    });
 
     quill = new Quill('#document-content', {
       modules: {
@@ -203,11 +217,30 @@ function appReady() {
       commandHandler(commandInput);
     });
 
+    document.getElementById('notes').addEventListener('click', function(){
+      if(this.classList.contains('is-open')) {
+        this.innerHTML = '<i class="icon-edit-2"></i> Notes';
+        this.classList.remove('is-open');
+
+        document.getElementById('notes-editor').classList.remove('is-active');
+        document.getElementById('terminal').classList.add('is-active');
+
+      } else {
+        this.classList.add('is-open');
+        this.innerHTML = '<i class="icon-terminal"></i> Commands';
+
+        document.getElementById('terminal').classList.remove('is-active');
+        document.getElementById('notes-editor').classList.add('is-active');
+
+      }
+    });
+
     document.getElementById('save').addEventListener('click', function(){
       displaySavedChanges();
 
       var saveData = {
         text: JSON.stringify(quill.getContents()),
+        notes: JSON.stringify(quillNotes.getContents()),
         title: document.getElementById('document-title').innerHTML,
         blocks: encodeHTML(document.getElementById('document-blocks').innerHTML)
       }
@@ -237,7 +270,10 @@ function createCampaign(saveInfo) {
 
   var updates = {};
   updates['users/'+ userId +'/campaigns/'+getUrlVars()['id']] = data;
-  return firebase.database().ref().update(updates);
+  setTimeout(function(){
+    return firebase.database().ref().update(updates);
+  }, 750);
+
 }
 
 function readCampaignList() {
@@ -280,10 +316,10 @@ function readCampaignList() {
     var deleteBtn = document.querySelectorAll('.delete');
     deleteBtn.forEach(function(e){
       e.addEventListener('click', function(){
-        keyToDelete = e.dataset.key;
+        keyTodelete = e.dataset.key;
 
         if(confirm("Are you sure you want to delete this campaign?") == true ){
-          deleteCampaign(keyToDelete);
+          deleteCampaign(keyTodelete);
           location.reload();
         }
 
@@ -303,7 +339,8 @@ function deleteCampaign(key){
 function saveCampaign(saveData, campaignUrl) {
   var data = {
     title: saveData.title,
-    text: saveData.text
+    text: saveData.text,
+    notes: saveData.notes
   }
 
   var updates = {};
@@ -314,19 +351,27 @@ function saveCampaign(saveData, campaignUrl) {
 function readCampaignInfo(campaignUrl) {
   return firebase.database().ref('/users/' + userId + '/campaigns/'+campaignUrl).once('value').then(function(snapshot) {
     var keyData = {
-      title: 'Undefined',
+      title: 'Your first campaign',
       text: '',
-      blocks: ''
+      notes: ''
     };
 
     for(var key in snapshot.val()) {
       keyData.title = snapshot.val()['title'];
       keyData.text = snapshot.val()['text'];
+      keyData.notes = snapshot.val()['notes'];
     }
 
     document.getElementById('document-title').innerHTML = keyData.title;
-    quill.setContents(JSON.parse(keyData.text));
-    quillLoaded = true;
+    if(keyData.text != '') {
+
+      quill.setContents(JSON.parse(keyData.text));
+      if(keyData.notes != undefined) {
+        quillNotes.setContents(JSON.parse(keyData.notes));
+      }
+
+      quillLoaded = true;
+    }
 
     updateElements(campaignInfo);
 
@@ -350,7 +395,7 @@ function getUrlVars() {
 }
 
 function setUniq() {
-  let uniq = (new Date()).getTime();
+  var uniq = (new Date()).getTime();
   return uniq;
 }
 
@@ -390,13 +435,26 @@ function commandHandler(value) {
     var choppedValue = value.split(/\s+/).slice(1,3);
     var amountRolled = choppedValue[0];
     var dieType = choppedValue[1];
-    li.innerHTML = '<i class="icon-chevron-right"></i> D'+dieType+' rolled '+amountRolled+' times:';
     commandList.appendChild(li);
-    for(i=0;amountRolled>i;i++) {
+
+    if(amountRolled == undefined && dieType == undefined) {
+      li.innerHTML = '<i class="icon-chevron-right"></i> No dice type or amount included.';
+
+    } else if(dieType == undefined) {
+      li.innerHTML = '<i class="icon-chevron-right"></i> D'+amountRolled+' rolled:';
       var rollLi = document.createElement('li');
-      rollLi.innerHTML = '<i class="icon-chevron-right"></i> '+ rollDice(dieType);
+      rollLi.innerHTML = '<i class="icon-chevron-right"></i> '+ rollDice(amountRolled);
       commandList.appendChild(rollLi);
+
+    } else {
+      li.innerHTML = '<i class="icon-chevron-right"></i> D'+dieType+' rolled '+amountRolled+' times:';
+      for(i=0;amountRolled>i;i++) {
+        var rollLi = document.createElement('li');
+        rollLi.innerHTML = '<i class="icon-chevron-right"></i> '+ rollDice(dieType);
+        commandList.appendChild(rollLi);
+      }
     }
+
   } else if(value.includes('/clear', 0)) {
     commandList.innerHTML = '';
   } else {
