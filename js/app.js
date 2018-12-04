@@ -109,19 +109,13 @@ function signInCheck() {
       userImage = user.photoURL;
 
 
-      if(userEmail == null) {
-        toDisplay = userName;
-      } else {
+      if(userName == null) {
         toDisplay = userEmail;
-      }
-
-      if(userImage == null) {
-        textOrImage = 'Logged in as ';
       } else {
-        textOrImage = '<img class="shadow" src="'+userImage+'"/>';
+        toDisplay = 'Hi, '+userName;
       }
 
-      document.querySelector('.username').innerHTML = textOrImage;
+      document.querySelector('.username').innerHTML = toDisplay;
       document.querySelector('.username').className += ' username--visible';
       appReady();
 
@@ -157,6 +151,8 @@ function appReady() {
     firebase.auth().signOut();
     window.location.href = homePage;
   });
+
+  isPremium();
 
   if(document.body.className == 'page__directory' ) {
     readCampaignList();
@@ -287,7 +283,7 @@ function readCampaignList() {
       title: 'Undefined'
     };
     keyData.size = 0;
-    var maxCount = 4;
+    var maxCount = 6;
 
     for(var key in snapshot.val()) {
       keyData.size += 1;
@@ -308,8 +304,6 @@ function readCampaignList() {
         if(keyData.size > maxCount) {
           document.getElementById('createBlock').remove();
         }
-      } else {
-        document.getElementById('premium-user').innerHTML = '<i class="icon-award"></i> Supporter';
       }
     });
 
@@ -468,4 +462,10 @@ function commandHandler(value) {
 function rollDice(num) {
   var randomNumber = Math.floor(Math.random() * num) + 1;
   return randomNumber;
+}
+
+function isPremium(){
+  // firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+
+  // });
 }
