@@ -5,7 +5,9 @@
 
   <div class="nav__options">
     <ul>
-      <li><span class="username"></span><span class="user-icon"><i class="icon-user"></i></span></li>
+      {% if page.id == 'app' or page.id == 'directory' %}
+        <li><span class="username"></span><span class="user-icon"><i class="icon-user"></i></span></li>
+      {% endif %}
     </ul>
   </div>
 </nav>
