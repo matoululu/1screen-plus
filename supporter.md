@@ -1,6 +1,6 @@
 ---
 layout: supporter
 id: supporter
-title: Supporter
-permalink: /supporter
+title: Premium
+permalink: /premium
 ---
