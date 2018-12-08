@@ -44,11 +44,23 @@ function readCampaignList() {
 
     firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
       if(snapshot.val().premium != 'yes') {
-        document.getElementById('premiumBar').style.display = 'block';
         document.getElementById('count').innerHTML = keyData.size+'/'+maxCount;
+
+        //BETA BENEFITS
+        //BETA BENEFITS
+        //BETA BENEFITS
+        document.getElementById('alert').style.display = 'block';
+        //BETA BENEFITS
+        //BETA BENEFITS
+        //BETA BENEFITS
+
         if(keyData.size > maxCount) {
           document.getElementById('createBlock').remove();
         }
+      } else {
+        document.getElementById('alert').remove();
+        document.getElementById('premiumBar').innerHTML = 'As a 1Screen Premium user you have unlimited slots.';
+
       }
     });
 

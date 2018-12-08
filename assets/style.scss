@@ -254,6 +254,29 @@ nav {
   }
 }
 
+/* Alert banner
+================================================== */
+.alertBanner {
+  position: absolute;
+  top: 50px;
+  left: 60px;
+  width: calc(100% - 60px);
+  text-align: center;
+  background-color: #1485CC;
+  display: none;
+  p {
+    color: white;
+  }
+  i.icon-x {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    cursor: pointer;
+  }
+}
+
 /* Quill
 ================================================== */
 
@@ -462,7 +485,6 @@ nav {
   text-align: center;
   padding: 5px;
   color: $border;
-  display: none;
 }
 
 .supporter-snippet {

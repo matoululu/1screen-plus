@@ -53,15 +53,8 @@ if(document.body.className == 'page__login') {
 /* Write user data
 ================================================== */
 
-function writeUserData(userId, userName, userEmail) {
-  var data = {
-    id: userId,
-    username: userName,
-    email: userEmail,
-    premium: 'no'
-  }
-
+function setPremium(isPremium) {
   var updates = {};
-  updates['users/'+ userId] = data;
+  updates['users/'+ userId + '/premium'] = isPremium;
   return firebase.database().ref().update(updates);
 }

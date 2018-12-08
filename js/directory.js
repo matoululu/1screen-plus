@@ -20,3 +20,12 @@ function setUniq() {
   var uniq = (new Date()).getTime();
   return uniq;
 }
+
+document.getElementById('closeAlert').addEventListener('click', function(){
+  document.getElementById('alert').remove();
+});
+
+document.getElementById('gift').addEventListener('click', function(){
+  setPremium('yes');
+  location.reload();
+})

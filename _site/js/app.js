@@ -90,7 +90,8 @@ function appHTML() {
     displaySavedChanges('auto');
     var saveData = {
       text: JSON.stringify(quill.getContents()),
-      title: document.getElementById('document-title').innerHTML
+      title: document.getElementById('document-title').innerHTML,
+      notes: JSON.stringify(quillNotes.getContents())
     }
     saveCampaign(saveData, campaignInfo.id);
   }, 300000)
