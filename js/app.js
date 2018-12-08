@@ -138,17 +138,26 @@ function commandHandler(value) {
       li.innerHTML = '<i class="icon-chevron-right"></i> No dice type or amount included.';
 
     } else if(dieType == undefined) {
-      li.innerHTML = '<i class="icon-chevron-right"></i> D'+amountRolled+' rolled:';
-      var rollLi = document.createElement('li');
-      rollLi.innerHTML = '<i class="icon-chevron-right"></i> '+ rollDice(amountRolled);
-      commandList.appendChild(rollLi);
+      if(isNaN(rollDice(amountRolled))) {
+        li.innerHTML = '<i class="icon-chevron-right"></i> Unknown command. Try /help to view commands.'
+      } else {
+        li.innerHTML = '<i class="icon-chevron-right"></i> D'+amountRolled+' rolled:';
+        var rollLi = document.createElement('li');
+        rollLi.innerHTML = '<i class="icon-chevron-right"></i> '+ rollDice(amountRolled);
+        commandList.appendChild(rollLi);
+      }
+
 
     } else {
-      li.innerHTML = '<i class="icon-chevron-right"></i> D'+dieType+' rolled '+amountRolled+' times:';
-      for(i=0;amountRolled>i;i++) {
-        var rollLi = document.createElement('li');
-        rollLi.innerHTML = '<i class="icon-chevron-right"></i> '+ rollDice(dieType);
-        commandList.appendChild(rollLi);
+      if(isNaN(rollDice(dieType))) {
+        li.innerHTML = '<i class="icon-chevron-right"></i> Unknown command. Try /help to view commands.'
+      } else {
+        li.innerHTML = '<i class="icon-chevron-right"></i> D'+dieType+' rolled '+amountRolled+' times:';
+        for(i=0;amountRolled>i;i++) {
+          var rollLi = document.createElement('li');
+          rollLi.innerHTML = '<i class="icon-chevron-right"></i> '+ rollDice(dieType);
+          commandList.appendChild(rollLi);
+        }
       }
     }
 
@@ -172,7 +181,9 @@ function commandHandler(value) {
 
 function rollDice(num) {
   var randomNumber = Math.floor(Math.random() * num) + 1;
+  console.log(randomNumber);
   return randomNumber;
+
 }
 
 function generateName(list, gender) {
@@ -180,20 +191,21 @@ function generateName(list, gender) {
   var first;
 
   try {
-    var last = window[list+'Last'][Math.floor(Math.random()*dragonbornMale.length)];
+    var last = window[list+'Last'][Math.floor(Math.random()*window[list+'Last'].length)];
+
     if(list != undefined) {
       if(gender == 'female') {
         param = list+'Female';
-        first = window[param][Math.floor(Math.random()*dragonbornMale.length)];
+        first = window[param][Math.floor(Math.random()*window[param].length)];
       } else {
         param = list+'Male';
-        first = window[param][Math.floor(Math.random()*dragonbornMale.length)];
+        first = window[param][Math.floor(Math.random()*window[param].length)];
       }
     }
     return(first +' '+ last);
 
   } catch(error) {
-    return('Unknown race selected. Try /help to view commands.');
+    return('Unknown command. Try /help to view commands.');
   }
 
 }
