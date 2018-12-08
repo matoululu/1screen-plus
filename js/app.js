@@ -125,7 +125,7 @@ function changesMade(){
 function commandHandler(value) {
   var li = document.createElement('li');
   if(value == '/help') {
-    li.innerHTML = '<i class="icon-chevron-right"></i> Available commands:<br>/roll (Ex. /roll 1 20)<br>/clear (Clear commands)<br>/help (View list of commands)'
+    li.innerHTML = '<i class="icon-chevron-right"></i> Available commands:<br>/roll [amount] [type]<br>(Ex. /roll 1 20)<br><br>/generate [race] [gender]<br>(Ex. /generate halforc female)<br><br>/clear (Clear commands)<br><br>/help (View list of commands)'
     commandList.appendChild(li);
   } else if(value.includes('/roll', 0)) {
     var choppedValue = value.split(/\s+/).slice(1,3);
@@ -153,6 +153,14 @@ function commandHandler(value) {
 
   } else if(value.includes('/clear', 0)) {
     commandList.innerHTML = '';
+  } else if(value.includes('/generate', 0)) {
+    var choppedValue = value.split(/\s+/).slice(1,3);
+    var race = choppedValue[0];
+    var gender = choppedValue[1];
+
+    li.innerHTML = '<i class="icon-chevron-right"></i> '+generateName(race, gender);
+
+    commandList.appendChild(li);
   } else {
     li.innerHTML = '<i class="icon-chevron-right"></i> Unknown command. Try /help to view commands.'
     commandList.appendChild(li);
@@ -164,4 +172,27 @@ function commandHandler(value) {
 function rollDice(num) {
   var randomNumber = Math.floor(Math.random() * num) + 1;
   return randomNumber;
+}
+
+function generateName(list, gender) {
+  var param;
+  var first;
+
+  try {
+    var last = window[list+'Last'][Math.floor(Math.random()*dragonbornMale.length)];
+    if(list != undefined) {
+      if(gender == 'female') {
+        param = list+'Female';
+        first = window[param][Math.floor(Math.random()*dragonbornMale.length)];
+      } else {
+        param = list+'Male';
+        first = window[param][Math.floor(Math.random()*dragonbornMale.length)];
+      }
+    }
+    return(first +' '+ last);
+
+  } catch(error) {
+    return('Unknown race selected. Try /help to view commands.');
+  }
+
 }
