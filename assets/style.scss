@@ -73,6 +73,7 @@ h1,h2,h3,h4,h5 {
 
   @media screen and (max-width: 1024px) {
     width: 90%;
+    overflow-y: scroll;
   }
 
   @media screen and (max-width: 798px) {
@@ -305,6 +306,14 @@ nav {
   border-bottom-color: $border;
 }
 
+.ql-editor ol li:not(.ql-direction-rtl), .ql-editor ul li:not(.ql-direction-rtl) {
+  padding-left: 0;
+}
+
+.ql-editor p, .ql-editor ol, .ql-editor ul, .ql-editor pre, .ql-editor blockquote, .ql-editor h1, .ql-editor h2, .ql-editor h3, .ql-editor h4, .ql-editor h5, .ql-editor h6 {
+  margin: 0.5em 0;
+}
+
 /* Document editor
 ================================================== */
 
@@ -419,6 +428,9 @@ nav {
   display: inline-block;
   width: calc(30% - 20px);
   margin-left: 20px;
+  @media screen and (max-width: 1024px) {
+    width: 40%
+  }
   @media screen and (max-width: 798px) {
     width: 100%;
     margin-left: 0;
@@ -443,6 +455,9 @@ nav {
 
 .document__container {
   width: 90%;
+  @media screen and (max-width: 1024px) {
+    width: 80%
+  }
   @media screen and (max-width: 798px) {
     width: 100%;
     margin-bottom: 20px;
@@ -450,7 +465,7 @@ nav {
 }
 
 .column__blocks {
-  padding: 10px 0;
+  padding: 10px;
   overflow-y: scroll;
   height: calc(100% - 42px);
   @media screen and (max-width: 798px) {
@@ -462,7 +477,6 @@ nav {
     li { padding: 5px; }
     li:last-child {
       background-color: darken(white, 10%);
-      border-radius: 6px;
     }
   }
 }
