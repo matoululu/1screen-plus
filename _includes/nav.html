@@ -5,7 +5,7 @@
 
   <div class="nav__options">
     <ul>
-      {% if page.id == 'app' or page.id == 'directory' %}
+      {% if page.id != 'index' %}
         <li><span class="username"></span><span class="user-icon"><i class="icon-user"></i></span></li>
       {% endif %}
     </ul>

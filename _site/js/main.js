@@ -1,7 +1,7 @@
 /* App.html & Directory.html
 ================================================== */
 
-if(document.body.className == 'page__app' || document.body.className == 'page__directory' ) {
+if(document.body.className != 'page__index') {
   signInCheck();
 }
 
@@ -24,6 +24,14 @@ function signInCheck() {
 
       document.querySelector('.username').innerHTML = toDisplay;
       appReady();
+
+
+      if(document.body.className == 'page__changelog' || document.body.className == 'page__supporter'  || document.body.className == 'page__about') {
+        setTimeout(function(){
+          document.querySelector('.loading-screen').style.display = 'none';
+        }, 150);
+      }
+
     } else {
       window.location.href = loginPage;
     }

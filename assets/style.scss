@@ -359,7 +359,8 @@ nav {
   @include flexbox();
   @include align-items(center);
   @include justify-content(center);
-  background-color: #f4f6f8;
+  @include flex-direction(column);
+  background-color: $primary;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -369,6 +370,11 @@ nav {
   img {
     width: 50px;
     height: 50px;
+  }
+  .loading__logo {
+    width: 300px;
+    height: auto;
+    margin-bottom: 50px;
   }
 }
 
@@ -502,15 +508,45 @@ nav {
 }
 
 .supporter-snippet {
-  @include flexbox();
-  @include justify-content(space-between);
   margin: 30px 0;
-  padding: 10px;
+  padding: 10px 20px;
   border: 1px solid $border;
   background-color: white;
-  .btn {
-    min-width: 150px;
+  h2 { color: $primary; }
+  .question { margin-bottom: 0; }
+  .answer {
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+}
+
+.compare-chart {
+  @include flexbox();
+  @include flex-direction(row);
+  @include justify-content(space-between);
+  margin-left: -10px;
+  margin-right: -10px;
+  div {
+    width: 50%;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid $border;
+    background-color: white;
     text-align: center;
+    h2 { color: $primary; }
+    ul {
+      padding-left: 0;
+      list-style: none;
+    }
+    strong {
+      padding: 7px;
+      display: inline-block;
+    }
+    .btn {
+      display: inline-block;
+      width: 200px;
+      margin-bottom: 0.5em;
+    }
   }
 }
 

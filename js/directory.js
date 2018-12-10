@@ -24,8 +24,3 @@ function setUniq() {
 document.getElementById('closeAlert').addEventListener('click', function(){
   document.getElementById('alert').remove();
 });
-
-document.getElementById('gift').addEventListener('click', function(){
-  setPremium('yes');
-  location.reload();
-})
