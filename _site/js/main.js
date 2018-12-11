@@ -33,7 +33,9 @@ function signInCheck() {
       }
 
     } else {
-      window.location.href = loginPage;
+      if(document.body.className == 'page__changelog' || document.body.className == 'page__supporter'  || document.body.className == 'page__about') {
+        window.location.href = loginPage;
+      }
     }
   });
 }
