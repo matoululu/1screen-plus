@@ -7,7 +7,7 @@
 $primary: #e01a41;
 $accent: #282c37;
 $border: #9baec8;
-$fontstack: 'Muli', sans-serif;
+$fontstack: 'Rubik', sans-serif;
 
 .shadow {
   box-shadow: 0 1px 2px 0 rgba(31, 45, 61, 0.15);
@@ -360,7 +360,7 @@ nav {
   @include align-items(center);
   @include justify-content(center);
   @include flex-direction(column);
-  background-color: $primary;
+  background-color: #f4f6f8;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -372,7 +372,7 @@ nav {
     height: 50px;
   }
   .loading__logo {
-    width: 300px;
+    width: 100px;
     height: auto;
     margin-bottom: 50px;
   }
@@ -526,6 +526,9 @@ nav {
   @include justify-content(space-between);
   margin-left: -10px;
   margin-right: -10px;
+  @media screen and (max-width: 798px) {
+    @include flex-direction(column);
+  }
   div {
     width: 50%;
     padding: 10px;
@@ -533,6 +536,9 @@ nav {
     border: 1px solid $border;
     background-color: white;
     text-align: center;
+    @media screen and (max-width: 798px) {
+      width: 100%;
+    }
     h2 { color: $primary; }
     ul {
       padding-left: 0;

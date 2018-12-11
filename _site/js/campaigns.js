@@ -28,7 +28,7 @@ function readCampaignList() {
       title: 'Undefined'
     };
     keyData.size = 0;
-    var maxCount = 6;
+    var maxCount = 10;
 
     for(var key in snapshot.val()) {
       keyData.size += 1;
