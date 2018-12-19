@@ -4,4 +4,18 @@
 <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
 
 <script src="{{ 'js/vendor.js' | relative_url }}"></script>
-<script src="{{ 'js/app.js' | relative_url }}"></script>
+<script src="{{ 'js/globals.js' | relative_url }}"></script>
+
+<script src="{{ 'js/login.js' | relative_url }}"></script>
+
+{% if page.id == 'directory' %}
+  <script src="{{ 'js/directory.js' | relative_url }}"></script>
+{% endif %}
+
+{% if page.id == 'app' %}
+  <script src="{{ 'js/names.js' | relative_url }}"></script>
+  <script src="{{ 'js/app.js' | relative_url }}"></script>
+{% endif %}
+
+<script src="{{ 'js/campaigns.js' | relative_url }}"></script>
+<script src="{{ 'js/main.js' | relative_url }}"></script>
