@@ -181,7 +181,6 @@ function commandHandler(value) {
 
 function rollDice(num) {
   var randomNumber = Math.floor(Math.random() * num) + 1;
-  console.log(randomNumber);
   return randomNumber;
 
 }

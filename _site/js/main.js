@@ -1,7 +1,7 @@
 /* App.html & Directory.html
 ================================================== */
 
-if(document.body.className != 'page__index') {
+if(document.body.className == 'page__directory' || document.body.className == 'page__about' || document.body.className == 'page__app' || document.body.className == 'page__changelog' ) {
   signInCheck();
 }
 
@@ -33,9 +33,7 @@ function signInCheck() {
       }
 
     } else {
-      if(document.body.className == 'page__changelog' || document.body.className == 'page__supporter'  || document.body.className == 'page__about') {
-        window.location.href = loginPage;
-      }
+      window.location.href = loginPage;
     }
   });
 }

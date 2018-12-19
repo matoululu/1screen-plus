@@ -3,6 +3,7 @@
 
 if(document.body.className == 'page__login') {
   console.log('navigated to login.html');
+  document.querySelector('.loading-screen').style.display = 'flex';
   var uiConfig = {
     callbacks: {
       signInSuccessWithAuthResult: function(authResult, redirectUrl) {
@@ -34,20 +35,16 @@ if(document.body.className == 'page__login') {
     ui.start('#firebaseui-auth-container', uiConfig);
   }
 
-  if(document.getElementsByClassName('page-login') != null) {
-    document.querySelector('.loading-screen').style.display = 'flex';
-    window.onload = function load() {
-      firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-          window.location.href = appPage;
-        } else {
-          document.querySelector('.loading-screen').style.display = 'none';
-          document.querySelector('.login').classList.add('main');
-          generateSignin()
-        }
-      });
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      window.location.href = appPage;
+    } else {
+      document.querySelector('.login').classList.add('main');
+      generateSignin();
+      document.querySelector('.loading-screen').style.display = 'none';
     }
-  }
+  });
+
 }
 
 /* Write user data
