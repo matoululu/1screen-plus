@@ -42,18 +42,6 @@ function readCampaignList() {
       campaignList.append(div);
     }
 
-    firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-      if(snapshot.val().premium != 'yes') {
-        document.getElementById('count').innerHTML = keyData.size+'/'+maxCount;
-
-        if(keyData.size > maxCount) {
-          document.getElementById('createBlock').remove();
-        }
-      } else {
-        document.getElementById('premiumBar').innerHTML = 'As a 1Screen Premium user you have unlimited slots.';
-      }
-    });
-
     var deleteBtn = document.querySelectorAll('.delete');
     deleteBtn.forEach(function(e){
       e.addEventListener('click', function(){

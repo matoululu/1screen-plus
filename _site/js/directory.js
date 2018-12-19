@@ -20,7 +20,3 @@ function setUniq() {
   var uniq = (new Date()).getTime();
   return uniq;
 }
-
-document.getElementById('closeAlert').addEventListener('click', function(){
-  document.getElementById('alert').remove();
-});
