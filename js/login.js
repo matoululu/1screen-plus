@@ -26,7 +26,7 @@ if(document.body.className == 'page__login') {
     // Terms of service url.
     tosUrl: termsPage,
     // Privacy policy url.
-    privacyPolicyUrl: termsPage
+    privacyPolicyUrl: privacyPage
   };
 
   function generateSignin() {

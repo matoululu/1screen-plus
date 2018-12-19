@@ -1,5 +1,6 @@
 var appPage = "/campaigns";
-var termsPage = "/terms";
+var termsPage = "/terms#tos";
+var privacyPage = '/terms#privacy'
 var homePage = "/";
 var loginPage = "/login";
 var editorPage = "/editor";
