@@ -67,17 +67,22 @@ h1,h2,h3,h4,h5 {
   margin: 0px auto;
   max-width: 800px;
   width: 95%;
+  padding-left: 60px;
   &.content--padded {
-    margin: 20px auto;
+    margin: 70px auto 20px;
+    @media screen and (max-width: 798px) {
+      margin: 20px auto;
+    }
   }
 
   @media screen and (max-width: 1024px) {
     width: 90%;
-    overflow-y: scroll;
   }
 
   @media screen and (max-width: 798px) {
+    padding-left: 0px;
     width: 95%;
+    margin: 10px auto;
   }
 }
 
@@ -113,6 +118,10 @@ nav {
   background-color: $primary;
   height: 50px;
   width: 100%;
+  position: fixed;
+  @media screen and (max-width: 798px) {
+    position: relative;
+  }
 }
 
 .nav__logo {
@@ -172,9 +181,13 @@ nav {
   background-color: $accent;
   height: 100%;
   width: 60px;
+  position: fixed;
+  top: 50px;
   @media screen and (max-width: 798px) {
     height: 45px;
     width: 100%;
+    position: relative;
+    top: 0;
   }
 }
 
@@ -379,16 +392,19 @@ nav {
 }
 
 .document {
-  margin: 10px auto;
+  margin: 70px auto 10px;
   width: 95%;
   height: calc(100% - 20px);
   max-width: calc(95% - 40px);
+  padding-left: 60px;
   @media screen and (max-width: 1024px) {
     width: 90%;
   }
 
   @media screen and (max-width: 798px) {
     width: 95%;
+    margin: 10px auto;
+    padding-left: 0px;
   }
 }
 
@@ -621,6 +637,11 @@ nav {
     transition: ease-in-out 0.3s color;
     &:hover {
       color: $primary;
+    }
+    @media screen and (max-width: 798px) {
+      z-index: 100;
+      background-color: white;
+      padding: 10px 0 10px 10px;
     }
   }
 }
