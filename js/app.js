@@ -59,7 +59,7 @@ function appHTML() {
 
   document.getElementById('notes').addEventListener('click', function(){
     if(this.classList.contains('is-open')) {
-      this.innerHTML = '<i class="icon-edit-2"></i> Notes';
+      this.innerHTML = '<i class="icon-edit"></i> Notes';
       this.classList.remove('is-open');
 
       document.getElementById('notes-editor').classList.remove('is-active');
@@ -67,7 +67,7 @@ function appHTML() {
 
     } else {
       this.classList.add('is-open');
-      this.innerHTML = '<i class="icon-terminal"></i> Commands';
+      this.innerHTML = '<i class="icon-code"></i> Commands';
 
       document.getElementById('terminal').classList.remove('is-active');
       document.getElementById('notes-editor').classList.add('is-active');
