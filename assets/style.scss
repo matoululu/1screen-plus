@@ -22,11 +22,6 @@ $fontstack: 'Rubik', sans-serif;
   i { color: $primary; }
 }
 
-.tipsContent {
-  h3 { margin-bottom: 0; }
-  p { margin-top: 0; }
-}
-
 /* Includes
 ================================================== */
 
@@ -589,6 +584,17 @@ nav {
   .icon-bell {
     font-size: 30px;
     margin: 0 25px;
+  }
+}
+
+.tipsContent {
+  h3 { margin-bottom: 0; }
+  p { margin-top: 0; }
+  a,
+  a:hover,
+  a:focus {
+    color: $border;
+    text-decoration: underline;
   }
 }
 
