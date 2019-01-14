@@ -11,5 +11,5 @@ sass:
 # Build settings
 markdown: kramdown
 
-includes:
-- .well-known
+include:
+  - .well-known
