@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: 1screen.xyz
+Token: 6f6fca144f45f89cc5c92b2d08cc1377bec293c1ac5c1ba2b6578ddc8ade3066
