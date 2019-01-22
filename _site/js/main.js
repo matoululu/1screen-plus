@@ -40,7 +40,7 @@ function signInCheck() {
                       + currentdate.getMinutes() + ":"
                       + currentdate.getSeconds();
       var updates = {};
-      updates['users/'+ userId + '/last-login'] = datetime;
+      updates['users/'+ userId + '/last-active'] = datetime;
       return firebase.database().ref().update(updates);
 
     } else {
