@@ -32,6 +32,17 @@ function signInCheck() {
         }, 150);
       }
 
+      var currentdate = new Date();
+      var datetime =  currentdate.getDate() + "/"
+                      + (currentdate.getMonth()+1)  + "/"
+                      + currentdate.getFullYear() + " @ "
+                      + currentdate.getHours() + ":"
+                      + currentdate.getMinutes() + ":"
+                      + currentdate.getSeconds();
+      var updates = {};
+      updates['users/'+ userId + '/last-login'] = datetime;
+      return firebase.database().ref().update(updates);
+
     } else {
       window.location.href = loginPage;
     }

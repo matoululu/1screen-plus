@@ -66,10 +66,18 @@ function deleteCampaign(key){
 ================================================== */
 
 function saveCampaign(saveData, campaignUrl) {
+  var currentdate = new Date();
+  var datetime =  currentdate.getDate() + "/"
+                  + (currentdate.getMonth()+1)  + "/"
+                  + currentdate.getFullYear() + " @ "
+                  + currentdate.getHours() + ":"
+                  + currentdate.getMinutes() + ":"
+                  + currentdate.getSeconds();
   var data = {
     title: saveData.title,
     text: saveData.text,
-    notes: saveData.notes
+    notes: saveData.notes,
+    saved: datetime
   }
 
   var updates = {};
