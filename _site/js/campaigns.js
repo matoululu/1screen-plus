@@ -65,19 +65,29 @@ function deleteCampaign(key){
 /* Campaign editing/loading
 ================================================== */
 
-function saveCampaign(saveData, campaignUrl) {
-  var currentdate = new Date();
-  var datetime =  currentdate.getDate() + "/"
-                  + (currentdate.getMonth()+1)  + "/"
-                  + currentdate.getFullYear() + " @ "
-                  + currentdate.getHours() + ":"
-                  + currentdate.getMinutes() + ":"
-                  + currentdate.getSeconds();
+function shareCampaign(saveData, campaignUrl) {
   var data = {
     title: saveData.title,
     text: saveData.text,
-    notes: saveData.notes,
-    saved: datetime
+    notes: saveData.notes
+  }
+
+  var updates = {};
+  updates['share/'+ '/' + campaignUrl] = data;
+
+  var li = document.createElement('li');
+  li.innerHTML = '<i class="icon-chevron-right"></i> Campaign shared at <a href="https://1screen.xyz/share/?id='+ campaignUrl +'" target="_blank">https://1screen.xyz/share/?id='+ campaignUrl +'</a>';
+
+  commandList.appendChild(li)
+
+  return firebase.database().ref().update(updates);
+}
+
+function saveCampaign(saveData, campaignUrl) {
+  var data = {
+    title: saveData.title,
+    text: saveData.text,
+    notes: saveData.notes
   }
 
   var updates = {};
@@ -87,6 +97,41 @@ function saveCampaign(saveData, campaignUrl) {
 
 function readCampaignInfo(campaignUrl) {
   return firebase.database().ref('/users/' + userId + '/campaigns/'+campaignUrl).once('value').then(function(snapshot) {
+    var keyData = {
+      title: 'Your first campaign',
+      text: '',
+      notes: ''
+    };
+
+    for(var key in snapshot.val()) {
+      keyData.title = snapshot.val()['title'];
+      keyData.text = snapshot.val()['text'];
+      keyData.notes = snapshot.val()['notes'];
+    }
+
+    document.getElementById('document-title').innerHTML = keyData.title;
+    if(keyData.text != '') {
+
+      quill.setContents(JSON.parse(keyData.text));
+      if(keyData.notes != undefined) {
+        quillNotes.setContents(JSON.parse(keyData.notes));
+      }
+
+      quillLoaded = true;
+    }
+
+    updateElements();
+
+    setTimeout(function(){
+      document.querySelector('.loading-screen').style.display = 'none';
+    }, 300);
+
+  });
+}
+
+function readSharedCampaignInfo(campaignUrl) {
+  console.log(campaignUrl)
+  return firebase.database().ref('/share/' + campaignUrl).once('value').then(function(snapshot) {
     var keyData = {
       title: 'Your first campaign',
       text: '',

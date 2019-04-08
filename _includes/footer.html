@@ -17,5 +17,10 @@
   <script src="{{ 'js/app.js' | relative_url }}"></script>
 {% endif %}
 
+{% if page.id == 'share' %}
+  <script src="{{ 'js/names.js' | relative_url }}"></script>
+  <script src="{{ 'js/share.js' | relative_url }}"></script>
+{% endif %}
+
 <script src="{{ 'js/campaigns.js' | relative_url }}"></script>
 <script src="{{ 'js/main.js' | relative_url }}"></script>

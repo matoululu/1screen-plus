@@ -1,60 +1,28 @@
-/* App.html
+/* Share.html
 ================================================== */
 
-function appHTML() {
-  console.log('navigated to app.html');
+function shareHTML() {
 
+  console.log('wow');
   campaignInfo.id = getUrlVars()['id'];
   campaignInfo.title = document.getElementById('document-title').innerHTML;
   campaignInfo.text = '';
-
-  if(getUrlVars()['create']) {
-    createCampaign(campaignInfo);
-    setTimeout(function(){
-      document.querySelector('.loading-screen').style.display = 'none';
-    }, 300);
-  } else {
-    readCampaignInfo(campaignInfo.id);
-  }
+  readSharedCampaignInfo(campaignInfo.id);
 
   quillNotes = new Quill('#document-notes', {
     modules: {
-      toolbar: [
-        ['bold', 'italic', 'underline'],
-        ['link'],
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }]
-      ]
+      toolbar: null
     },
+    readOnly: true,
     theme: 'snow'
   });
 
   quill = new Quill('#document-content', {
     modules: {
-      toolbar: [
-        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-        [{ 'font': [] }],
-        ['bold', 'italic', 'underline', 'strike', { 'align': [] }],
-        ['link'],
-        [{ 'color': [] }],
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }]
-      ]
+      toolbar: null
     },
+    readOnly: true,
     theme: 'snow'
-  });
-
-  //Event listeners
-
-  quill.on('text-change', function(){
-    changesMade();
-  });
-
-  quillNotes.on('text-change', function(){
-    changesMade();
-  });
-
-  document.getElementById('command').addEventListener('submit', function(){
-    var commandInput = document.getElementById('commandInput').value;
-    commandHandler(commandInput);
   });
 
   document.getElementById('notes').addEventListener('click', function(){
@@ -74,74 +42,6 @@ function appHTML() {
 
     }
   });
-
-  document.getElementById('share').addEventListener('click', function(){
-    displayShared()
-
-    var saveData = {
-      text: JSON.stringify(quill.getContents()),
-      notes: JSON.stringify(quillNotes.getContents()),
-      title: document.getElementById('document-title').innerHTML
-    }
-
-    shareCampaign(saveData, campaignInfo.id);
-  });
-
-  document.getElementById('save').addEventListener('click', function(){
-    displaySavedChanges();
-
-    var saveData = {
-      text: JSON.stringify(quill.getContents()),
-      notes: JSON.stringify(quillNotes.getContents()),
-      title: document.getElementById('document-title').innerHTML
-    }
-    saveCampaign(saveData, campaignInfo.id);
-  });
-
-  setInterval(function() {
-    displaySavedChanges('auto');
-    var saveData = {
-      text: JSON.stringify(quill.getContents()),
-      title: document.getElementById('document-title').innerHTML,
-      notes: JSON.stringify(quillNotes.getContents())
-    }
-    saveCampaign(saveData, campaignInfo.id);
-  }, 300000)
-}
-
-/* App.html Misc
-================================================== */
-
-function displaySavedChanges(auto){
-  if (auto == 'auto') {
-    document.getElementById('save-message').innerHTML = 'Auto-saved';
-    document.getElementById('save').classList.remove('changes');
-    setTimeout(function(){
-      document.getElementById('save-message').innerHTML = 'Save';
-    }, 1500);
-  } else {
-    document.getElementById('save-message').innerHTML = 'Saved';
-    document.getElementById('save').classList.remove('changes');
-    setTimeout(function(){
-      document.getElementById('save-message').innerHTML = 'Save';
-    }, 1500);
-  }
-
-}
-
-function displayShared(){
-  document.getElementById('share-message').innerHTML = 'Shared';
-  document.getElementById('share').classList.remove('changes');
-  setTimeout(function(){
-    document.getElementById('share-message').innerHTML = 'Share';
-  }, 1500);
-
-}
-
-function changesMade(){
-  if(quillLoaded === true) {
-    document.getElementById('save').classList.add('changes');
-  }
 }
 
 function commandHandler(value) {

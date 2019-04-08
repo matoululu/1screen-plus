@@ -75,6 +75,18 @@ function appHTML() {
     }
   });
 
+  document.getElementById('share').addEventListener('click', function(){
+    displayShared()
+
+    var saveData = {
+      text: JSON.stringify(quill.getContents()),
+      notes: JSON.stringify(quillNotes.getContents()),
+      title: document.getElementById('document-title').innerHTML
+    }
+
+    shareCampaign(saveData, campaignInfo.id);
+  });
+
   document.getElementById('save').addEventListener('click', function(){
     displaySavedChanges();
 
@@ -114,6 +126,15 @@ function displaySavedChanges(auto){
       document.getElementById('save-message').innerHTML = 'Save';
     }, 1500);
   }
+
+}
+
+function displayShared(){
+  document.getElementById('share-message').innerHTML = 'Shared';
+  document.getElementById('share').classList.remove('changes');
+  setTimeout(function(){
+    document.getElementById('share-message').innerHTML = 'Share';
+  }, 1500);
 
 }
 

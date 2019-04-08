@@ -1,7 +1,7 @@
 /* App.html & Directory.html
 ================================================== */
 
-if(document.body.className == 'page__directory' || document.body.className == 'page__about' || document.body.className == 'page__app' || document.body.className == 'page__changelog' ) {
+if( document.body.className == 'page__share' || document.body.className == 'page__directory' || document.body.className == 'page__about' || document.body.className == 'page__app' || document.body.className == 'page__changelog' ) {
   signInCheck();
 }
 
@@ -44,7 +44,12 @@ function signInCheck() {
       return firebase.database().ref().update(updates);
 
     } else {
-      window.location.href = loginPage;
+      if(document.body.className == 'page__share' ) {
+        appReady();
+      } else {
+        window.location.href = loginPage;
+      }
+
     }
   });
 }
@@ -52,10 +57,15 @@ function signInCheck() {
 function appReady() {
 
   //Log out eventlistener
-  document.getElementById('logout').addEventListener('click', function(){
-    firebase.auth().signOut();
-    window.location.href = homePage;
-  });
+  if(document.body.className != 'page__share') {
+    document.getElementById('logout').addEventListener('click', function(){
+      firebase.auth().signOut();
+      window.location.href = homePage;
+    });
+  } else {
+    document.querySelector('.sidebar').remove();
+  }
+
 
   //Check if premium
   isPremium();
@@ -66,6 +76,10 @@ function appReady() {
   //App.html specific
   if(document.body.className == 'page__app' ) {
     appHTML();
+  }
+
+  if(document.body.className == 'page__share' ) {
+    shareHTML();
   }
 }
 

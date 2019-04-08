@@ -350,6 +350,27 @@ nav {
   }
 }
 
+#share {
+  padding: 7px;
+  background-color: transparent;
+  border: 1px solid $primary;
+  border-radius: 3px;
+  color: $primary;
+  cursor: pointer;
+  width: 150px;
+  text-align: center;
+  margin-left: 10px;
+  outline: 0;
+  @media screen and (max-width: 798px) {
+    margin-left: 0px;
+    margin-right: 5px;
+  }
+  &:hover {
+    border: 1px solid darken($primary, 20%);
+    color: darken($primary, 20%);
+  }
+}
+
 #save {
   padding: 7px;
   background-color: $accent;
@@ -412,6 +433,14 @@ nav {
     margin: 10px auto;
     padding-left: 0px;
   }
+}
+
+.page__share .document {
+  padding-left: 0;
+}
+
+.page__share .document__content {
+  height: 100%;
 }
 
 .document__title {

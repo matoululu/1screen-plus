@@ -1,0 +1,23 @@
+---
+layout: default
+title: share
+id: share
+handle: share
+---
+
+{% include loading.html %}
+
+{% include sidebar.html %}
+
+<div class="document">
+  <div class="document__header">
+    <h1 spellcheck="false" id="document-title" class="document__title">Your first campaign</h1>
+    <div class="document__buttons">
+      <button class="shadow" id="notes"><i class="icon-edit"></i> Notes</button>
+    </div>
+  </div>
+  <div class="document__workspace">
+    {% include editor.html %}
+    {% include blocks.html %}
+  </div>
+</div>
