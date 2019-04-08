@@ -76,7 +76,7 @@ function shareCampaign(saveData, campaignUrl) {
   updates['share/'+ '/' + campaignUrl] = data;
 
   var li = document.createElement('li');
-  li.innerHTML = '<i class="icon-chevron-right"></i> Campaign shared at <a href="https://1screen.xyz/share/?id='+ campaignUrl +'" target="_blank">https://1screen.xyz/share/?id='+ campaignUrl +'</a>';
+  li.innerHTML = '<i class="icon-chevron-right"></i> Campaign shared at <a href="https://1screen.xyz/share?id='+ campaignUrl +'" target="_blank">https://1screen.xyz/share?id='+ campaignUrl +'</a>';
 
   commandList.appendChild(li)
 
