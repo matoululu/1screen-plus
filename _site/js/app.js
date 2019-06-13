@@ -33,6 +33,7 @@ function appHTML() {
       toolbar: [
         [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
         [{ 'font': [] }],
+        ['blockquote'],
         ['bold', 'italic', 'underline', 'strike', { 'align': [] }],
         ['link'],
         [{ 'color': [] }],

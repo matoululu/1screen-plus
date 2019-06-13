@@ -326,6 +326,15 @@ nav {
   margin: 0.5em 0;
 }
 
+.ql-snow .ql-editor blockquote {
+  background: #f4f6f8;
+  border: 1px solid $border;
+  box-shadow: 0 1px 2px 0 rgba(31, 45, 61, 0.15);
+  display: inline-block;
+  margin: 20px 0;
+  padding: 10px;
+}
+
 /* Document editor
 ================================================== */
 
