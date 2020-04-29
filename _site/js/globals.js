@@ -1,9 +1,9 @@
-const appPage = "/campaigns";
-const termsPage = "/terms#tos";
-const privacyPage = '/terms#privacy'
-const homePage = "/";
-const loginPage = "/login";
-const editorPage = "/editor";
+const appPage = "https://matoululu.github.io/1screen-plus/campaigns";
+const termsPage = "https://matoululu.github.io/1screen-plus/terms#tos";
+const privacyPage = 'https://matoululu.github.io/1screen-plus/terms#privacy'
+const homePage = "https://matoululu.github.io/1screen-plus/";
+const loginPage = "https://matoululu.github.io/1screen-plus/login";
+const editorPage = "https://matoululu.github.io/1screen-plus/editor";
 var userName, userEmail, userId;
 var userPremium = false;
 var campaignInfo = new Object();
