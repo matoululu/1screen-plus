@@ -5,7 +5,7 @@ function directoryHTML() {
   readCampaignList();
   var newPostKey = setUniq();
   var createID = document.getElementById('create');
-  createID.href = editorPage+'?create=true&id='+newPostKey;
+  createID.href = '/'+editorPage+'?create=true&id='+newPostKey;
 }
 
 /* Directory.html Misc
