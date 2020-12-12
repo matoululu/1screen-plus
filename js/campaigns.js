@@ -38,7 +38,7 @@ function readCampaignList() {
         keyData.title = snapshot.val()[key]['title']
       }
       div.className = 'campaign shadow camp_'+key;
-      div.innerHTML = '<a href="/editor?id='+key+'"><span><i class="icon-news"></i> '+keyData.title+'</span></a><i class="icon-cross delete" data-key="'+key+'" alt="delete campaign" title="delete campaign"></i>'
+      div.innerHTML = '<a href="/1screen-plus/editor?id='+key+'"><span><i class="icon-news"></i> '+keyData.title+'</span></a><i class="icon-cross delete" data-key="'+key+'" alt="delete campaign" title="delete campaign"></i>'
       campaignList.append(div);
     }
 
